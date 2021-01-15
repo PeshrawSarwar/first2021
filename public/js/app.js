@@ -71937,7 +71937,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _function__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./function */ "./resources/js/components/Admin/Items/function.js");
-/* harmony import */ var _Admin_funnction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Admin/funnction */ "./resources/js/components/Admin/funnction.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -71961,7 +71960,6 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -72069,17 +72067,6 @@ var AddItem = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(AddItem, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      Object(_Admin_funnction__WEBPACK_IMPORTED_MODULE_2__["getauthadmin"])().then(function (res) {
-        _this2.setState({
-          admins_id: res.data.admin.id
-        });
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
       var success = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -72309,6 +72296,7 @@ var EditItem = /*#__PURE__*/function (_Component) {
     _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
+      items: [],
       name: "",
       description: "",
       image: "",
@@ -72333,34 +72321,6 @@ var EditItem = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "inputRef", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
 
-    _defineProperty(_assertThisInitialized(_this), "submitState", function (e) {
-      e.preventDefault();
-      var formData = new FormData();
-      formData.append("name", _this.state.name);
-      formData.append("description", _this.state.description);
-      formData.append("image", _this.state.image);
-      formData.append("barcode", _this.state.barcode);
-      formData.append("price", _this.state.price);
-      formData.append("quantity", _this.state.quantity);
-      formData.append("status", _this.state.status);
-      var id = _this.props.match.params.id;
-      Object(_function__WEBPACK_IMPORTED_MODULE_1__["updateitems"])(id, formData).then(function (res) {
-        if (res) {
-          _this.inputRef.current.value = "";
-
-          _this.setState({
-            success: "you created item successfully",
-            name: "",
-            description: "",
-            status: "",
-            price: "",
-            barcode: "",
-            qunatity: ""
-          });
-        }
-      });
-    });
-
     return _this;
   }
 
@@ -72371,19 +72331,47 @@ var EditItem = /*#__PURE__*/function (_Component) {
 
       var id = this.props.match.params.id;
       Object(_function__WEBPACK_IMPORTED_MODULE_1__["edititems"])(id).then(function (res) {
-        var _this2$setState;
+        _this2.setState({
+          items: res.items.name // name: res.data.name,
+          // description: res.data.description,
+          // image: res.data.image_url,
+          // barcode: res.data.barcode,
+          // price: res.data.barcode,
+          // price: res.data.price,
+          // quantity: res.data.quantity,
+          // status: res.data.status
 
-        _this2.setState((_this2$setState = {
-          name: res.data.items.name,
-          description: res.data.items.description,
-          image: res.data.items.image_url,
-          barcode: res.data.items.barcode,
-          price: res.data.items.barcode
-        }, _defineProperty(_this2$setState, "price", res.data.items.price), _defineProperty(_this2$setState, "quantity", res.data.items.quantity), _defineProperty(_this2$setState, "status", res.data.items.status), _this2$setState));
+        });
       });
     }
   }, {
     key: "render",
+    // submitState = e => {
+    //     e.preventDefault();
+    //     const formData = new FormData();
+    //     formData.append("name", this.state.name);
+    //     formData.append("description", this.state.description);
+    //     formData.append("image", this.state.image);
+    //     formData.append("barcode", this.state.barcode);
+    //     formData.append("price", this.state.price);
+    //     formData.append("quantity", this.state.quantity);
+    //     formData.append("status", this.state.status);
+    //     const id = this.props.match.params.id;
+    //     updateitems(id, formData).then(res => {
+    //         if (res) {
+    //             this.inputRef.current.value = "";
+    //             this.setState({
+    //                 success: "you created item successfully",
+    //                 name: "",
+    //                 description: "",
+    //                 status: "",
+    //                 price: "",
+    //                 barcode: "",
+    //                 qunatity: ""
+    //             });
+    //         }
+    //     });
+    // };
     value: function render() {
       var success = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "alert alert-success"

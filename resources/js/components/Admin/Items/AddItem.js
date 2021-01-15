@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { additems } from "./function";
-import { getauthadmin } from "../../Admin/funnction";
+
 
 class AddItem extends Component {
     state = {
@@ -23,13 +23,6 @@ class AddItem extends Component {
         photoSize: ""
     };
 
-    componentDidMount() {
-        getauthadmin().then(res => {
-            this.setState({
-                admins_id: res.data.admin.id
-            });
-        });
-    }
 
     validateName = () => {
         let nameRequired = "";
