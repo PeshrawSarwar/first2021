@@ -6505,7 +6505,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".card_login {\n    margin: auto;\n    margin-top: 50px;\n}\n\n.alert-danger {\n    margin-top: 30px;\n}\n", ""]);
+exports.push([module.i, ".card_login {\r\n    margin: auto;\r\n    margin-top: 50px;\r\n}\r\n\r\n.alert-danger {\r\n    margin-top: 30px;\r\n}\r\n", ""]);
 
 // exports
 
