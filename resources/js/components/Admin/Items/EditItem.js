@@ -28,7 +28,7 @@ class EditItem extends Component {
             this.setState({
                 name: res.data.items.name,
                 description: res.data.items.description,
-                image: res.data.items.image_url,
+                image: res.data.items.image,
                 barcode: res.data.items.barcode,
                 price: res.data.items.barcode,
                 price: res.data.items.price,
@@ -166,11 +166,13 @@ class EditItem extends Component {
                                                     <label htmlFor="exampleInputdescription1">
                                                         Select an image
                                                     </label>
+                                                    <img src={this.state.image} alt="none"/>
                                                     <input
                                                         ref={this.inputRef}
                                                         type="file"
                                                         className="form-control"
                                                         id="exampleInputdescription1"
+
                                                         name="image"
                                                         required
                                                         placeholder="Select an image"

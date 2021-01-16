@@ -72369,7 +72369,7 @@ var EditItem = /*#__PURE__*/function (_Component) {
         _this2.setState((_this2$setState = {
           name: res.data.items.name,
           description: res.data.items.description,
-          image: res.data.items.image_url,
+          image: res.data.items.image,
           barcode: res.data.items.barcode,
           price: res.data.items.barcode
         }, _defineProperty(_this2$setState, "price", res.data.items.price), _defineProperty(_this2$setState, "quantity", res.data.items.quantity), _defineProperty(_this2$setState, "status", res.data.items.status), _this2$setState));
@@ -72449,7 +72449,10 @@ var EditItem = /*#__PURE__*/function (_Component) {
         className: "form-group"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "exampleInputdescription1"
-      }, "Select an image"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Select an image"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: this.state.image,
+        alt: "none"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         ref: this.inputRef,
         type: "file",
         className: "form-control",
