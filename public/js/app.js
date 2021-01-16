@@ -72296,7 +72296,6 @@ var EditItem = /*#__PURE__*/function (_Component) {
     _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
-      items: [],
       name: "",
       description: "",
       image: "",
@@ -72321,6 +72320,34 @@ var EditItem = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "inputRef", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
 
+    _defineProperty(_assertThisInitialized(_this), "submitState", function (e) {
+      e.preventDefault();
+      var formData = new FormData();
+      formData.append("name", _this.state.name);
+      formData.append("description", _this.state.description);
+      formData.append("image", _this.state.image);
+      formData.append("barcode", _this.state.barcode);
+      formData.append("price", _this.state.price);
+      formData.append("quantity", _this.state.quantity);
+      formData.append("status", _this.state.status);
+      var id = _this.props.match.params.id;
+      Object(_function__WEBPACK_IMPORTED_MODULE_1__["updateitems"])(id, formData).then(function (res) {
+        if (res) {
+          _this.inputRef.current.value = "";
+
+          _this.setState({
+            success: "you created item successfully",
+            name: "",
+            description: "",
+            status: "",
+            price: "",
+            barcode: "",
+            qunatity: ""
+          });
+        }
+      });
+    });
+
     return _this;
   }
 
@@ -72331,47 +72358,19 @@ var EditItem = /*#__PURE__*/function (_Component) {
 
       var id = this.props.match.params.id;
       Object(_function__WEBPACK_IMPORTED_MODULE_1__["edititems"])(id).then(function (res) {
-        _this2.setState({
-          items: res.items.name // name: res.data.name,
-          // description: res.data.description,
-          // image: res.data.image_url,
-          // barcode: res.data.barcode,
-          // price: res.data.barcode,
-          // price: res.data.price,
-          // quantity: res.data.quantity,
-          // status: res.data.status
+        var _this2$setState;
 
-        });
+        _this2.setState((_this2$setState = {
+          name: res.data.items.name,
+          description: res.data.items.description,
+          image: res.data.items.image_url,
+          barcode: res.data.items.barcode,
+          price: res.data.items.barcode
+        }, _defineProperty(_this2$setState, "price", res.data.items.price), _defineProperty(_this2$setState, "quantity", res.data.items.quantity), _defineProperty(_this2$setState, "status", res.data.items.status), _this2$setState));
       });
     }
   }, {
     key: "render",
-    // submitState = e => {
-    //     e.preventDefault();
-    //     const formData = new FormData();
-    //     formData.append("name", this.state.name);
-    //     formData.append("description", this.state.description);
-    //     formData.append("image", this.state.image);
-    //     formData.append("barcode", this.state.barcode);
-    //     formData.append("price", this.state.price);
-    //     formData.append("quantity", this.state.quantity);
-    //     formData.append("status", this.state.status);
-    //     const id = this.props.match.params.id;
-    //     updateitems(id, formData).then(res => {
-    //         if (res) {
-    //             this.inputRef.current.value = "";
-    //             this.setState({
-    //                 success: "you created item successfully",
-    //                 name: "",
-    //                 description: "",
-    //                 status: "",
-    //                 price: "",
-    //                 barcode: "",
-    //                 qunatity: ""
-    //             });
-    //         }
-    //     });
-    // };
     value: function render() {
       var success = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "alert alert-success"
@@ -72620,10 +72619,10 @@ var GetItem = /*#__PURE__*/function (_Component) {
 
       Object(_function__WEBPACK_IMPORTED_MODULE_1__["getitems"])().then(function (res) {
         _this2.setState({
-          items: res.data.data,
-          activePage: res.data.current_page,
-          itemsCountPerPage: res.data.per_page,
-          totalItemsCount: res.data.total
+          items: res.data.items.data,
+          activePage: res.data.items.current_page,
+          itemsCountPerPage: res.data.items.per_page,
+          totalItemsCount: res.data.items.total
         });
       });
     }
@@ -72635,10 +72634,10 @@ var GetItem = /*#__PURE__*/function (_Component) {
       console.log("active page is ".concat(pageNumber));
       Object(_function__WEBPACK_IMPORTED_MODULE_1__["handlePage"])(pageNumber).then(function (res) {
         _this3.setState({
-          items: res.data.data,
-          activePage: res.data.current_page,
-          itemsCountPerPage: res.data.per_page,
-          totalItemsCount: res.data.total
+          items: res.data.items.data,
+          activePage: res.data.items.current_page,
+          itemsCountPerPage: res.data.items.per_page,
+          totalItemsCount: res.data.items.total
         });
       });
     }
@@ -72691,7 +72690,7 @@ var GetItem = /*#__PURE__*/function (_Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
           scope: "row"
         }, item.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: item.image_url,
+          src: item.image,
           alt: "none",
           width: "80",
           height: "60"

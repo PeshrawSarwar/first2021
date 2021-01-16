@@ -3,7 +3,6 @@ import { updateitems, edititems } from "./function";
 
 class EditItem extends Component {
     state = {
-        items:[],
         name: "",
         description: "",
         image: "",
@@ -27,15 +26,14 @@ class EditItem extends Component {
         const id = this.props.match.params.id;
         edititems(id).then(res => {
             this.setState({
-                items:res.items.name
-                // name: res.data.name,
-                // description: res.data.description,
-                // image: res.data.image_url,
-                // barcode: res.data.barcode,
-                // price: res.data.barcode,
-                // price: res.data.price,
-                // quantity: res.data.quantity,
-                // status: res.data.status
+                name: res.data.items.name,
+                description: res.data.items.description,
+                image: res.data.items.image_url,
+                barcode: res.data.items.barcode,
+                price: res.data.items.barcode,
+                price: res.data.items.price,
+                quantity: res.data.items.quantity,
+                status: res.data.items.status
             });
         });
     }
@@ -47,35 +45,35 @@ class EditItem extends Component {
     };
     inputRef = React.createRef();
 
-    // submitState = e => {
-    //     e.preventDefault();
+    submitState = e => {
+        e.preventDefault();
 
-    //     const formData = new FormData();
-    //     formData.append("name", this.state.name);
-    //     formData.append("description", this.state.description);
-    //     formData.append("image", this.state.image);
-    //     formData.append("barcode", this.state.barcode);
-    //     formData.append("price", this.state.price);
-    //     formData.append("quantity", this.state.quantity);
-    //     formData.append("status", this.state.status);
+        const formData = new FormData();
+        formData.append("name", this.state.name);
+        formData.append("description", this.state.description);
+        formData.append("image", this.state.image);
+        formData.append("barcode", this.state.barcode);
+        formData.append("price", this.state.price);
+        formData.append("quantity", this.state.quantity);
+        formData.append("status", this.state.status);
 
-    //     const id = this.props.match.params.id;
+        const id = this.props.match.params.id;
 
-    //     updateitems(id, formData).then(res => {
-    //         if (res) {
-    //             this.inputRef.current.value = "";
-    //             this.setState({
-    //                 success: "you created item successfully",
-    //                 name: "",
-    //                 description: "",
-    //                 status: "",
-    //                 price: "",
-    //                 barcode: "",
-    //                 qunatity: ""
-    //             });
-    //         }
-    //     });
-    // };
+        updateitems(id, formData).then(res => {
+            if (res) {
+                this.inputRef.current.value = "";
+                this.setState({
+                    success: "you created item successfully",
+                    name: "",
+                    description: "",
+                    status: "",
+                    price: "",
+                    barcode: "",
+                    qunatity: ""
+                });
+            }
+        });
+    };
     render() {
         const success = (
             <div className="alert alert-success"> {this.state.success} </div>

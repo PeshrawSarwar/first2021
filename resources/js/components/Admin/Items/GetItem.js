@@ -15,10 +15,10 @@ class GetItem extends Component {
     componentDidMount() {
         getitems().then(res => {
             this.setState({
-                items: res.data.data,
-                activePage: res.data.current_page,
-                itemsCountPerPage: res.data.per_page,
-                totalItemsCount: res.data.total
+                items: res.data.items.data,
+                activePage: res.data.items.current_page,
+                itemsCountPerPage: res.data.items.per_page,
+                totalItemsCount: res.data.items.total
             });
         });
     }
@@ -27,10 +27,10 @@ class GetItem extends Component {
         console.log(`active page is ${pageNumber}`);
         handlePage(pageNumber).then(res => {
             this.setState({
-                items: res.data.data,
-                activePage: res.data.current_page,
-                itemsCountPerPage: res.data.per_page,
-                totalItemsCount: res.data.total
+                items: res.data.items.data,
+                activePage: res.data.items.current_page,
+                itemsCountPerPage: res.data.items.per_page,
+                totalItemsCount: res.data.items.total
             });
         });
     }
@@ -77,9 +77,8 @@ class GetItem extends Component {
                                                         </td>
                                                         <td>
                                                             <img
-                                                                src={
-                                                                    item.image_url
-                                                                }
+                                                                src={item.image}
+
                                                                 alt="none"
                                                                 width="80"
                                                                 height="60"

@@ -46,10 +46,10 @@ class ItemsController extends Controller
 
     public function getItem(){
         $items=Item::orderBy('id','desc')->paginate(5);
-        if (request()->wantsJson()) {
-            return  ItemResource::collection($items);
-        }
-        // return response()->json(compact('items'));
+        // if (request()->wantsJson()) {
+        //     return  ItemResource::collection($items);
+        // }
+        return response()->json(compact('items'));
     }
 
     public function editItem($id){
