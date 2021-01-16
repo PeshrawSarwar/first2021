@@ -77,7 +77,7 @@ class AddItem extends Component {
                     status: "",
                     price: "",
                     barcode: "",
-                    qunatity: ""
+                    quantity: ""
                 });
             } else {
                 this.setState({

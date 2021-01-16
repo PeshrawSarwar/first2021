@@ -43,6 +43,12 @@ class EditItem extends Component {
             [e.target.name]: e.target.value
         });
     };
+
+    changeStatePhoto = e => {
+        this.setState({
+            image: e.target.files[0]
+        });
+    };
     inputRef = React.createRef();
 
     submitState = e => {
@@ -63,7 +69,7 @@ class EditItem extends Component {
             if (res) {
                 this.inputRef.current.value = "";
                 this.setState({
-                    success: "you created item successfully",
+                    success: "you updated item successfully",
                     name: "",
                     description: "",
                     status: "",

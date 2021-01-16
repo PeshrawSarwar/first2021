@@ -72053,7 +72053,7 @@ var AddItem = /*#__PURE__*/function (_Component) {
             status: "",
             price: "",
             barcode: "",
-            qunatity: ""
+            quantity: ""
           });
         } else {
           _this.setState({
@@ -72318,6 +72318,12 @@ var EditItem = /*#__PURE__*/function (_Component) {
       _this.setState(_defineProperty({}, e.target.name, e.target.value));
     });
 
+    _defineProperty(_assertThisInitialized(_this), "changeStatePhoto", function (e) {
+      _this.setState({
+        image: e.target.files[0]
+      });
+    });
+
     _defineProperty(_assertThisInitialized(_this), "inputRef", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef());
 
     _defineProperty(_assertThisInitialized(_this), "submitState", function (e) {
@@ -72336,7 +72342,7 @@ var EditItem = /*#__PURE__*/function (_Component) {
           _this.inputRef.current.value = "";
 
           _this.setState({
-            success: "you created item successfully",
+            success: "you updated item successfully",
             name: "",
             description: "",
             status: "",

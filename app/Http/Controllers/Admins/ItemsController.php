@@ -87,7 +87,7 @@ class ItemsController extends Controller
         $items->save();
 
         if (request()->wantsJson()) {
-            return  ItemResource::collection($items);
+            return response()->json(compact('items'));
         }
     }
 
